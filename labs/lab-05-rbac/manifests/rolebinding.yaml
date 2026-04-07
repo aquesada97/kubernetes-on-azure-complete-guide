@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-reader-binding
+  namespace: lab05
+  labels:
+    lab: lab05
+subjects:
+# Bind the role to our ServiceAccount
+- kind: ServiceAccount
+  name: lab05-sa             # Must match the ServiceAccount name
+  namespace: lab05           # Must match the ServiceAccount namespace
+# Optionally also bind to a user (commented out - use your AAD UPN or Azure AD group)
+# - kind: User
+#   name: "user@example.com"
+#   apiGroup: rbac.authorization.k8s.io
+# - kind: Group
+#   name: "developers-group-aad-object-id"
+#   apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader           # Must match the Role name
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azure-disk-pvc
+  namespace: lab03
+  labels:
+    lab: lab03
+spec:
+  accessModes:
+  - ReadWriteOnce                   # Single node read/write — Azure Disk constraint
+  storageClassName: managed-csi     # Standard SSD
+  resources:
+    requests:
+      storage: 10Gi

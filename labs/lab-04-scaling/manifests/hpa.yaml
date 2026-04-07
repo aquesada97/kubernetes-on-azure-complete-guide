@@ -1,0 +1,32 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: php-apache
+  namespace: lab04
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: php-apache                   # Target deployment to autoscale
+  minReplicas: 2                       # Always keep at least 2 pods for HA
+  maxReplicas: 20                      # Never exceed 20 pods
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50         # Scale when avg CPU > 50% of request (200m)
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60   # Wait 60s before scaling up again
+      policies:
+      - type: Percent
+        value: 100                     # Can double pod count per step
+        periodSeconds: 60
+    scaleDown:
+      stabilizationWindowSeconds: 300  # Wait 5 min after CPU drops before scaling down
+      policies:
+      - type: Pods
+        value: 4                       # Remove at most 4 pods per minute
+        periodSeconds: 60

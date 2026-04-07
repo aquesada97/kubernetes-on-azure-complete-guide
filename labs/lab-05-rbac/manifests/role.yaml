@@ -1,0 +1,20 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-reader
+  namespace: lab05
+  labels:
+    lab: lab05
+rules:
+# Allow read operations on core API resources in lab05 namespace
+- apiGroups: [""]
+  resources: ["pods", "pods/log", "services", "configmaps", "endpoints"]
+  verbs: ["get", "list", "watch"]
+# Allow read operations on Deployment resources
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch"]
+# Allow reading events (helpful for debugging)
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["get", "list", "watch"]
