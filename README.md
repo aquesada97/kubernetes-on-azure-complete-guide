@@ -80,3 +80,17 @@ We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for gu
 ## 📜 License
 
 This project is licensed under the MIT License.
+
+
+---
+
+## 🔗 Related Training Guides
+
+This guide is part of a series of Azure container platform training resources:
+
+| Guide | Description |
+|-------|-------------|
+| 🐳 [Azure Container Registry (ACR)](https://github.com/aquesada97/azure-container-registry-complete-guide) | Build, store, and manage container images — integrates directly with AKS |
+| 🔴 [Azure Red Hat OpenShift (ARO)](https://github.com/aquesada97/azure-redhat-openshift-complete-guide) | Enterprise OpenShift on Azure — security, S2I builds, Operator Framework |
+
+> **Recommended learning path:** ACR → AKS → ARO
